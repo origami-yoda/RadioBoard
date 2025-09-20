@@ -153,7 +153,7 @@ int main(void)
     
     if (status == HAL_OK) 
     {
-      printf("Received byte: %c (0x%02X)\r\n", rx_byte, rx_byte);
+      // printf("Received byte: %c (0x%02X)\r\n", rx_byte, rx_byte);
       if (rx_byte == 'V')
       {
         HAL_GPIO_TogglePin(solenoid_output_GPIO_Port, solenoid_output_Pin);
