@@ -61,7 +61,6 @@ static void MX_USART1_UART_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
 /* USER CODE END 0 */
 
 /**
@@ -98,14 +97,15 @@ int main(void)
   MX_USB_Device_Init();
   /* USER CODE BEGIN 2 */
   HAL_GPIO_WritePin(blue_led_GPIO_Port, blue_led_Pin, GPIO_PIN_SET);
-
+  HAL_GPIO_WritePin(solenoid_output_GPIO_Port, solenoid_output_Pin, GPIO_PIN_RESET);
+  
   FDCAN_FilterTypeDef sFilterConfig;
   sFilterConfig.IdType = FDCAN_STANDARD_ID;
   sFilterConfig.FilterIndex = 0;
   sFilterConfig.FilterType = FDCAN_FILTER_MASK;
   sFilterConfig.FilterConfig = FDCAN_FILTER_TO_RXFIFO0;
-  sFilterConfig.FilterID1 = 0x000;
-  sFilterConfig.FilterID2 = 0x000;
+  sFilterConfig.FilterID1 = 0x001;
+  sFilterConfig.FilterID2 = 0x7FF;
   if (HAL_FDCAN_ConfigFilter(&hfdcan2, &sFilterConfig) != HAL_OK)
   {
     Error_Handler();
@@ -141,7 +141,7 @@ int main(void)
             uint8_t radio_packet[7];
             radio_packet[0] = 0x01;
             memcpy(&radio_packet[1], rx_data, 6);
-            HAL_UART_Transmit(&huart1, rx_data, 7, 50);
+            HAL_UART_Transmit(&huart1, rx_data, 7, 10);
             HAL_GPIO_TogglePin(blue_led_GPIO_Port, blue_led_Pin);
           }
         }
@@ -149,18 +149,18 @@ int main(void)
     }
 
     uint8_t rx_byte;
-    HAL_StatusTypeDef status = HAL_UART_Receive(&huart1, &rx_byte, 1, 50);
+    HAL_StatusTypeDef status = HAL_UART_Receive(&huart1, &rx_byte, 1, 1);
     
     if (status == HAL_OK) 
     {
       printf("Received byte: %c (0x%02X)\r\n", rx_byte, rx_byte);
       if (rx_byte == 'V')
       {
-        HAL_GPIO_TogglePin(test_led_GPIO_Port, test_led_Pin);
+        HAL_GPIO_TogglePin(solenoid_output_GPIO_Port, solenoid_output_Pin);
       }
     } 
 
-    HAL_Delay(100);
+    HAL_Delay(10);
   }
   /* USER CODE END 3 */
 }

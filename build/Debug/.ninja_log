@@ -35,3 +35,9 @@
 386	941	1757012297796578447	cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pcd_ex.c.obj	da23054241f17222
 740	1198	1757012298043030158	cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal.c.obj	95855d911ab21008
 1206	1829	1757012298683342157	cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c.obj	ecae9a9f2256baef
+8	5222	1758395866289157804	CMakeFiles/RadioBoard.dir/Core/Src/main.c.obj	9627e72a96110a8a
+5222	6608	1758395867670583013	RadioBoard.elf	a9d60d8f45645f9c
+5	4971	1758396292826316646	CMakeFiles/RadioBoard.dir/Core/Src/main.c.obj	9627e72a96110a8a
+4972	6329	1758396294182011355	RadioBoard.elf	a9d60d8f45645f9c
+7	474	1758397397421144504	CMakeFiles/RadioBoard.dir/Core/Src/main.c.obj	9627e72a96110a8a
+474	885	1758397397830602262	RadioBoard.elf	a9d60d8f45645f9c
