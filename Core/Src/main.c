@@ -138,10 +138,11 @@ int main(void)
 
           if (calculated_checksum == rx_data[7])
           {
-            uint8_t radio_packet[7];
+            uint8_t radio_packet[8];
             radio_packet[0] = 0x01;
             memcpy(&radio_packet[1], rx_data, 6);
-            HAL_UART_Transmit(&huart1, rx_data, 7, 10);
+            radio_packet[7] = '\n';
+            HAL_UART_Transmit(&huart1, radio_packet, 8, 10);
             HAL_GPIO_TogglePin(blue_led_GPIO_Port, blue_led_Pin);
           }
         }
@@ -153,9 +154,10 @@ int main(void)
     
     if (status == HAL_OK) 
     {
-      // printf("Received byte: %c (0x%02X)\r\n", rx_byte, rx_byte);
+      printf("Received byte: %c (0x%02X)\r\n", rx_byte, rx_byte);
       if (rx_byte == 'V')
       {
+        HAL_GPIO_TogglePin(test_led_GPIO_Port, test_led_Pin);
         HAL_GPIO_TogglePin(solenoid_output_GPIO_Port, solenoid_output_Pin);
       }
     } 
